@@ -1,8 +1,14 @@
 package com.vms.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import java.util.List;
 
 @Table(name = "boss")
 @Entity
@@ -10,7 +16,15 @@ import jakarta.persistence.Table;
 public class Boss extends Person {
 
   private String usern;
-  private String passw;
+  private String company;
+  private String birthday;
+
+  @OneToMany
+  @JsonIgnore
+  @JoinColumn(name = "boss_id")
+  private List<Event> events;
+
+  ////////////////////////////////////////
 
   public String getUsern() {
     return usern;
@@ -20,11 +34,27 @@ public class Boss extends Person {
     this.usern = usern;
   }
 
-  public String getPassw() {
-    return passw;
+  public String getCompany() {
+    return company;
   }
 
-  public void setPassw(String passw) {
-    this.passw = passw;
+  public void setCompany(String company) {
+    this.company = company;
+  }
+
+  public String getBirthday() {
+    return birthday;
+  }
+
+  public void setBirthday(String birthday) {
+    this.birthday = birthday;
+  }
+
+  public List<Event> getEvents() {
+    return events;
+  }
+
+  public void setEvents(List<Event> events) {
+    this.events = events;
   }
 }

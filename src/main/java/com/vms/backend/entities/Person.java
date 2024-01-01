@@ -10,8 +10,8 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import java.util.Date;
 
-@Entity
 @Table(name = "person")
+@Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
 
@@ -19,17 +19,16 @@ public class Person {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  private String name;
+  private String fullname;
 
-  private Date created_at;
+  private String email;
 
-  public Date getCreated_at() {
-    return created_at;
-  }
+  private String passw;
 
-  public void setCreated_at(Date created_at) {
-    this.created_at = created_at;
-  }
+  private Boolean isBoss;
+
+  @Column(name = "created_at") // Specify column name for clarity
+  private Date createdAt; // Use consistent naming conventions
 
   public int getId() {
     return id;
@@ -39,11 +38,45 @@ public class Person {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getFullname() {
+    return fullname;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setFullname(String fullname) {
+    this.fullname = fullname;
   }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassw() {
+    return passw;
+  }
+
+  public void setPassw(String passw) {
+    this.passw = passw;
+  }
+
+  public Boolean getIsBoss() {
+    return isBoss;
+  }
+
+  public void setIsBoss(Boolean isBoss) {
+    this.isBoss = isBoss;
+  }
+
+  public Date getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
+  /////////////////////////////////
+
 }
