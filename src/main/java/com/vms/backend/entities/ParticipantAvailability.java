@@ -22,7 +22,6 @@ public class ParticipantAvailability {
   private Boolean is_allocated;
 
   @ManyToOne
-  @JsonIgnore
   @JoinColumn(name = "participant_id")
   private Participant participant;
 

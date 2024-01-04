@@ -26,17 +26,14 @@ public class Event {
   private String description;
 
   @ManyToOne
-  @JsonIgnore
   @JoinColumn(name = "boss_id")
   private Boss boss;
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JsonIgnore
   @JoinColumn(name = "event_id")
   private List<Shift> shifts;
 
   @OneToMany
-  @JsonIgnore
   @JoinColumn(name = "event_id")
   private List<ParticipantAvailability> availabilities;
 
