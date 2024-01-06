@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vms-backend-deployment # Name of your deployment
+spec:
+  replicas: 3 # Number of desired pods
+  selector:
+    matchLabels:
+      app: vms-backend # Label for identifying pods
+  template:
+    metadata:
+      labels:
+        app: vms-backend
+    spec:
+      containers:
+        - name: vms-backend
+          image: neozhixuan/vms-backend:latest # Replace with your public image URL
+          ports:
+            - containerPort: 8080 # Replace with your application's port
