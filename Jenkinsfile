@@ -46,8 +46,32 @@ pipeline {
                         }
                     } else {
                         withCredentials([string(credentialsId: 'dockerhub-pwd2', variable: 'dockerhubpwd2')]) {
-                            sh 'docker login -u neozhixuan -p ${dockerhubpwd2}'
+                            sh 'docker login -u neozhixuan -p "$dockerhubpwd2"'
                             sh 'docker push neozhixuan/vms-backend'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Configure AWS and Deploy to EKS') {
+            steps {
+                script{
+    
+                    def isWindows = isUnix() ? false : true
+            
+                    if (isWindows) {
+                        withCredentials([aws(credentialsId: 'zhixuan-aws-creds', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                            bat """
+                                aws eks update-kubeconfig --name ascode-cluster --region us-east-1
+                                kubectl get ns
+                                kubectl apply -f deployment.yaml
+                            """
+                        }
+                    }else{
+                        withCredentials([aws(credentialsId: 'zhixuan-aws-creds', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                            sh ('aws eks update-kubeconfig --name kubename --region us-east-1')
+                            sh "kubectl get ns"
+                            sh "kubectl apply -f deployment.yaml"
                         }
                     }
                 }
