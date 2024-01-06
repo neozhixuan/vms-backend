@@ -60,20 +60,22 @@ public class HomeController {
   @Autowired
   EventService eventService;
 
+  private static final String FRONTEND_URL = "https://vms-frontend-zeta.vercel.app/";
+
   ///////////////////////////////////
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @PostMapping("addboss")
   public Boss addBoss(@RequestBody Boss boss) {
     return bossRepository.save(boss);
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @GetMapping("getbosses")
   public List<Boss> getBosses() {
     return bossRepository.findAll();
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @GetMapping("getboss")
   public Optional<Boss> getBoss(@RequestParam Integer id) {
     return bossRepository.findById(id);
@@ -81,13 +83,13 @@ public class HomeController {
 
   ////////////////////////////////////
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @PostMapping("addparticipant")
   public Participant addParticipant(@RequestBody Participant participant) {
     return participantRepository.save(participant);
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @GetMapping("getparticipants")
   public List<Participant> getParticipants() {
     return participantRepository.findAll();
@@ -95,25 +97,25 @@ public class HomeController {
 
   ////////////////////////////////////
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @PostMapping("addevent")
   public Event addEvent(@RequestBody EventRequest eventRequest) {
     return eventService.saveEvent(eventRequest);
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @GetMapping("getevents")
   public List<Event> getEvents() {
     return eventRepository.findAll();
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @GetMapping("getevent")
   public Optional<Event> getEvent(@RequestParam Integer id) {
     return eventRepository.findById(id);
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @GetMapping("getbossevent")
   public List<Event> getBossEvent(@RequestParam Integer boss_id) {
     return eventRepository.findBossEvents(boss_id);
@@ -121,7 +123,7 @@ public class HomeController {
 
   /////////////////////////////////////
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @PostMapping("addavailability")
   public ParticipantAvailability addParticipantAvailability(
     @RequestBody ParticipantAvailabilityRequest request
@@ -129,7 +131,7 @@ public class HomeController {
     return participantAvailabilityService.saveParticipantAvailability(request);
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @GetMapping("getavailability")
   public List<ParticipantAvailability> getAvailability() {
     return participantAvailabilityRepository.findAll();
@@ -137,7 +139,7 @@ public class HomeController {
 
   //////////////////////////////////////
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @GetMapping("getshifts")
   public List<Shift> getShifts() {
     return shiftRepository.findAll();
@@ -145,7 +147,7 @@ public class HomeController {
 
   //////////////////////////////////////
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @PostMapping("login")
   public ResponseEntity<Boss> login(@RequestBody LoginRequest loginRequest)
     throws NotFoundException {
@@ -162,7 +164,7 @@ public class HomeController {
     }
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin(origins = FRONTEND_URL)
   @PostMapping("is_participant")
   public ResponseEntity<Participant> checkParticipant(
     @RequestBody LoginRequest loginRequest
