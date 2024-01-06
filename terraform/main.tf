@@ -75,7 +75,7 @@ module "eks" {
     instance_types = ["m5.large"]
     # Can also configure VPC security groups
     # Can also configure additional policies
-    attach_cluster_primary_security_group = true
+    # attach_cluster_primary_security_group = true
   }
 
   eks_managed_node_groups = {
@@ -96,7 +96,7 @@ module "eks" {
 
   # Add tags specifically for the Kubernetes security group
   tags = {
-    k8s_security_group = "sg-068bbd6eb36ff54e2"
+    # k8s_security_group = "sg-068bbd6eb36ff54e2"
   }
 }
 
