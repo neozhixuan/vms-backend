@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vms-backend-deployment # Name of your deployment
+  name: vms-backend-deployment
 spec:
-  replicas: 3 # Number of desired pods
+  replicas: 3
   selector:
     matchLabels:
-      app: vms-backend # Label for identifying pods
+      app: vms-backend
   template:
     metadata:
       labels:
@@ -14,6 +14,19 @@ spec:
     spec:
       containers:
         - name: vms-backend
-          image: neozhixuan/vms-backend:latest # Replace with your public image URL
+          image: neozhixuan/vms-backend:latest
           ports:
-            - containerPort: 8080 # Replace with your application's port
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vms-backend-service
+spec:
+  selector:
+    app: vms-backend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer # Use NodePort if LoadBalancer is not supported

@@ -46,7 +46,7 @@ pipeline {
                         }
                     } else {
                         withCredentials([string(credentialsId: 'dockerhub-pwd2', variable: 'dockerhubpwd2')]) {
-                            sh 'docker login --username neozhixuan --password "$dockerhubpwd2"'
+                            sh 'docker login -u neozhixuan -p ${dockerhubpwd2}'
                             sh 'docker push neozhixuan/vms-backend'
                         }
                     }
