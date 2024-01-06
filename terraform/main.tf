@@ -32,13 +32,9 @@ module "vpc" {
 
   enable_nat_gateway = true
 
-  public_subnet_tags = {
-    "kubernetes.io/role/elb" = 1
-  }
-
-  private_subnet_tags = {
-    "kubernetes.io/role/internal-elb" = 1
-  }
+  # Remove tags from subnets
+  public_subnet_tags  = {}
+  private_subnet_tags = {}
 }
 
 module "eks" {
@@ -98,7 +94,10 @@ module "eks" {
     }
   }
 
-  tags = local.tags
+  # Add tags specifically for the Kubernetes security group
+  tags = {
+    k8s_security_group = "sg-068bbd6eb36ff54e2"
+  }
 }
 
 # Can also configure AWS Fargate
