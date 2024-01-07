@@ -1,7 +1,8 @@
 # Volunteer Management System
 
 This is the backend for the VMS utilising Spring's various technologies to create a simple factory of beans that support a Postgres RDBMS.
-![image](https://github.com/neozhixuan/vms-backend/assets/79783660/1f391d91-2862-4132-ac99-aa181ead67a1)
+
+![image](https://github.com/neozhixuan/vms-backend/assets/79783660/1ee91eae-ceea-40fb-ac99-84ad3046bb30)
 
 ## Tech Stack
 
@@ -20,6 +21,7 @@ PostgreSQL
 
 Amazon Web Services
 - Docker for containerising of application into an image
+- Route 53 for DNS resolution of domain names
 - Relational Database Services to host PostgreSQL server
 - Elastic Kubernetes Services to host docker images as Kubernetes pods
 - EC2 to manage node groups within EKS
