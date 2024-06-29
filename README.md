@@ -4,7 +4,14 @@ This is the backend for the VMS utilising Spring's various technologies to creat
 
 ![image](https://github.com/neozhixuan/vms-backend/assets/79783660/1ee91eae-ceea-40fb-ac99-84ad3046bb30)
 
-## Tech Stack
+## How to run this
+1. Start the postgres database in your pgAdmin.
+2. Update the spring.datasource.url, as well as username and password to match the database.
+3. mvn clean package
+4. mvn spring-boot:run
+
+
+## Tech Stack and Project Scope
 
 Spring Boot Backend:
 - Spring JPA for repository management and persistence
