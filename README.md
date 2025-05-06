@@ -42,16 +42,18 @@ mvn spring-boot:run
 - Bridged the One-to-Many and Many-to-One associations in the class diagram
 - Deployed onto Amazon EC2 for persistent access
 
+**CI/CD**
+- Jenkins to configure the Continuous Integration (CI) pipeline to run builds and tests, then Continuous Deployment (CD) into EKS using `kubectl` scripts
+- Docker as part of CI - for containerising of application into an image
+- Terraform as part of CD - streamlining the consistent provisioning of various AWS resources below
+
 **Amazon Web Services**
 
-- Docker for containerising of application into an image
 - Route 53 for DNS resolution of domain names
 - Relational Database Services to host PostgreSQL server
 - Elastic Kubernetes Services to host docker images as Kubernetes pods
 - EC2 to manage node groups within EKS
 - Elastic Load Balancer to allow for exposure to internet gateway
-- Terraform to manage and provision AWS Resources simultaneously
-- Jenkins to tie it all together in a CI/CD pipeline to deploy everything effortlessly
 
 ## OOP Design (to be improved)
 
