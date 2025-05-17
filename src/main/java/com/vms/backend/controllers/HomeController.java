@@ -1,35 +1,21 @@
 package com.vms.backend.controllers;
 
-import com.vms.backend.entities.Boss;
-import com.vms.backend.entities.Event;
-import com.vms.backend.entities.Participant;
-import com.vms.backend.entities.ParticipantAvailability;
-import com.vms.backend.entities.Shift;
+import java.util.List;
+import java.util.Optional;
+
+import com.vms.backend.entities.*;
 import com.vms.backend.pojos.EventRequest;
 import com.vms.backend.pojos.LoginRequest;
 import com.vms.backend.pojos.ParticipantAvailabilityRequest;
-import com.vms.backend.repositories.BossRepository;
-import com.vms.backend.repositories.EventRepository;
-import com.vms.backend.repositories.ParticipantAvailabilityRepository;
-import com.vms.backend.repositories.ParticipantRepository;
-import com.vms.backend.repositories.PersonRepository;
-import com.vms.backend.repositories.ShiftRepository;
+import com.vms.backend.repositories.*;
 import com.vms.backend.services.EventService;
 import com.vms.backend.services.ParticipantAvailabilityService;
-import java.util.List;
-import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/")
 @RestController
@@ -99,7 +85,7 @@ public class HomeController {
 
   @CrossOrigin(origins = FRONTEND_URL)
   @PostMapping("addevent")
-  public Event addEvent(@RequestBody EventRequest eventRequest) {
+  public Event addEvent(@RequestBody EventRequest eventRequest) throws NotFoundException{
     return eventService.saveEvent(eventRequest);
   }
 
